@@ -15,7 +15,7 @@ HOST, PORT = "78.156.118.38", 5006
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(("",0))
 sock.setblocking(0)
-sock.settimeout(20)
+sock.settimeout(20) 
 loggedin=False
 confirmed=[]
 lrec=[]
