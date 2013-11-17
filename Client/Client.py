@@ -102,40 +102,41 @@ class chat (threading.Thread):
     def __init__(self):
         #Init threading:
         threading.Thread.__init__(self)
+        global app
     def run(self):
-        print "1"
+        def sendmsg():
+            self.outbox.text()
         def chatwindow():
-            print "2"
             chatwindow=QWidget()
             #Set up the layout
             chatlayout = QVBoxLayout()
             chatsub_layout = QHBoxLayout()
             #Create and set up the button
             sendbutton = QPushButton("Send",chatwindow)
-            #sendbutton.clicked.connect(Sendmsg)
+            #sendbutton.clicked.connect(sendmsg)
             sendbutton.setDefault(True)
             #Create and set up the message writing box thingy
-            outbox = QLineEdit(chatwindow)
-            outbox.setPlaceholderText("Text here:")
-            outbox.setMinimumWidth(200)
-            #outbox.returnPressed.connect(Sendmsg)
+            self.outbox = QLineEdit(chatwindow)
+            self.outbox.setPlaceholderText("Text here:")
+            self.outbox.setMinimumWidth(200)
+            #self.outbox.returnPressed.connect(sendmsg)
             #Create and set up the message reading box 
             inbox = QTextEdit("",chatwindow)
             inbox.setReadOnly(True)
             chatwindow.setWindowTitle("Chat client!")
             chatlayout.addWidget(inbox)
-            chatsub_layout.addWidget(outbox)
+            chatsub_layout.addWidget(self.outbox)
             chatsub_layout.addWidget(sendbutton)
             chatlayout.addLayout(chatsub_layout)
             # Run the main Qt loop
             chatwindow.setLayout(chatlayout)
             return chatwindow
-        print "3"
         chatwindow=chatwindow()
-        print "4"
-        print "done"
-        app.exec_()
+        print "Done"
+        #app.exec_()
+        print "Done"
         chatwindow.show()
+        print "Done"
 
 
 
