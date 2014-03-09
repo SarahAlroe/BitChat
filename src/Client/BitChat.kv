@@ -1,11 +1,50 @@
 #:kivy 1.8
 
 <LoginScreen>:
-	Button:
-		font_name: "../../res/fonts/Consolas.ttf"
-		text: ">"
-		size_hint_x: 0.15
-		on_press: root.manager.current = 'chat'
+	BoxLayout:
+		orientation: "horizontal"
+		Label:
+			size_hint_x: 0.5
+			
+		BoxLayout:
+			orientation: "vertical"
+			size_hint_x: 1
+			spacing: 10
+			#padding: 0,50,0,50
+			
+			Label:
+				size_hint_y: 1
+				text: 'BitChat v. 2.0'
+				#halign: 'middle'
+				valign: 'top'
+				foreground_color: 0,255,0,1
+			TextInput:
+				size_hint: 1, 0.2
+				multiline: False
+				font_name: "../../res/fonts/Consolas.ttf"
+				text: "Username"
+				background_color: 0,25,0,0.1
+				foreground_color: 0,255,0,1
+				
+			TextInput:
+				size_hint: 1, 0.2
+				multiline: False
+				password: True
+				readonly: True
+				font_name: "../../res/fonts/Consolas.ttf"
+				text: "Password"
+				background_color: 0,25,0,0.1
+				foreground_color: 0,255,0,1
+			
+			Button:
+				font_name: "../../res/fonts/Consolas.ttf"
+				text: ">"
+				size_hint: 1, 0.25
+				on_press: root.manager.current = 'chat'
+			Label:
+				size_hint_y: 1
+		Label:
+			size_hint_x: 0.5
 
 <ChatScreen>:
 	BoxLayout:
@@ -30,12 +69,8 @@
 				font_name: "../../res/fonts/Consolas.ttf"
 				text: "default input text"
 				
-				
-			
 			Button:
 				font_name: "../../res/fonts/Consolas.ttf"
 				text: ">"
 				size_hint_x: 0.15
 				on_press: root.manager.current = 'login'
-					
-		
