@@ -132,9 +132,7 @@ class chat (threading.Thread):
             chatwindow.setLayout(chatlayout)
             return chatwindow
         chatwindow=chatwindow()
-        print "Done"
-        #app.exec_()
-        print "Done"
+        app.exec_()
         chatwindow.show()
         print "Done"
 
