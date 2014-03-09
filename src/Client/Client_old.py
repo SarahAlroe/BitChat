@@ -1,11 +1,13 @@
+from PySide.QtCore import *
+from PySide.QtGui import *
+from select import select
 import json
+import os
+import random
 import socket
 import sys
 import threading
-import os, time, random
-from select import select
-from PySide.QtCore import *
-from PySide.QtGui import *
+import time
 import time
 
 #HOST, PORT = "78.156.118.38", 62344
