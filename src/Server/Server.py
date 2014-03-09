@@ -58,7 +58,7 @@ class Handler(SocketServer.BaseRequestHandler):
 
 if __name__ == "__main__":
     # Port 0 means to select an arbitrary unused port
-    HOST, PORT = "192.168.0.109", 5006
+    HOST, PORT = "192.168.0.24", 5006
 
     server = ThreadedUDPServer((HOST, PORT), Handler)
     ip, port = server.server_address
