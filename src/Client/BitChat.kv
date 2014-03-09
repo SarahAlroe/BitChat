@@ -1,0 +1,30 @@
+#:kivy 1.8
+
+BoxLayout:
+	orientation: "vertical"
+	spacing: 5
+	
+	
+	TextInput:
+		font_name: "../../res/fonts/Consolas.ttf"
+		text: "Main container default text"
+		#valign: "top"
+		size_hint: 1, 1
+		background_color: 0,0,0,1
+		foreground_color: 0,255,0,1
+		
+	BoxLayout:
+		orientation: "horizontal"
+		spacing: 2
+		size_hint: 1, 0.2
+		
+		TextInput:
+			font_name: "../../res/fonts/Consolas.ttf"
+			text: "default input text"
+			
+			
+		
+		Button:
+			font_name: "../../res/fonts/Consolas.ttf"
+			text: ">"
+			size_hint_x: 0.15
