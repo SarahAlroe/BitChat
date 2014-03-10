@@ -6,6 +6,14 @@ kivy.require('1.0.6') # replace with your current kivy version !
 
 
 class LoginScreen(Screen):
+    def btn_login_pressed(self, username, password):
+        print "login pressed, changing window"
+        print username
+        print password
+        print self.te_username.text #this is another way - it can be used to access widget 
+        App.get_running_app().sm.current = "chat" #use App.get_running_app() to access current ap
+        
+    
     pass
 
 class ChatScreen(Screen):

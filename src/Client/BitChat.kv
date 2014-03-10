@@ -1,6 +1,7 @@
 #:kivy 1.8
 
 <LoginScreen>:
+	te_username: username
 	BoxLayout:
 		orientation: "horizontal"
 		Label:
@@ -19,20 +20,22 @@
 				valign: 'top'
 				foreground_color: 0,255,0,1
 			TextInput:
+				id: username
 				size_hint: 1, 0.2
 				multiline: False
 				font_name: "../../res/fonts/Consolas.ttf"
-				text: "Username"
+				hint_text: "Username"
 				background_color: 0,25,0,0.1
 				foreground_color: 0,255,0,1
 				
 			TextInput:
+				id: password
 				size_hint: 1, 0.2
 				multiline: False
 				password: True
 				readonly: True
 				font_name: "../../res/fonts/Consolas.ttf"
-				text: "Password"
+				hint_text: "Password"
 				background_color: 0,25,0,0.1
 				foreground_color: 0,255,0,1
 			
@@ -40,7 +43,7 @@
 				font_name: "../../res/fonts/Consolas.ttf"
 				text: ">"
 				size_hint: 1, 0.25
-				on_press: root.manager.current = 'chat'
+				on_press: root.btn_login_pressed(username.text,password.text)
 			Label:
 				size_hint_y: 1
 		Label:
