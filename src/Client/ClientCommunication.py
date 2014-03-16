@@ -3,7 +3,7 @@ Created on 09/03/2014
 
 @author: tobalr
 '''
-import Send
+from Send import Send
 import json
 import socket
 import time
@@ -14,9 +14,9 @@ class ClientCommunication():
         '''
     #Login function
     def login(self, username, password):
-        data={'type':"register", 'username': username, 'lanIP': self.sock.gethostbyname(socket.gethostname())}
+        data={'type':"register", 'username': username, 'lanIP': socket.gethostbyname(socket.gethostname())}
         jdata=json.dumps(data)
-        Send(self.sock, jdata, (self.serverAdr, self.serverPort)).start()
+        Send(self.sock, self.client.receiver.confirmed ,jdata, (self.serverAdr, self.serverPort)).start()
         print "Sent:     {}".format(data)
     
     #connects this client to server
@@ -44,7 +44,8 @@ class ClientCommunication():
         sock.sendto(jconfirm,target)
         print "Sent confirmation for message with id: "+cid
         
-    def initializeConnection(self, serverAdress, serverPort):
+    def initializeConnection(self, client, serverAdress, serverPort):
+        self.client = client
         self.serverAdr = serverAdress
         self.serverPort = serverPort
         # set sock

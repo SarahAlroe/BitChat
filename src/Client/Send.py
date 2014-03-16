@@ -4,12 +4,12 @@ import threading
 import time
 
 class Send (threading.Thread):
-    def __init__(self,sock,data,target):
+    def __init__(self,sock,confirmed,data,target):
         threading.Thread.__init__(self)
         self.sock = sock
         self.data = data
         self.target = target
-        global confirmed
+        self.confirmed = confirmed
     def run(self):
         ident=random.randint(1, 1000000000)
         while True:
@@ -21,10 +21,10 @@ class Send (threading.Thread):
             self.sock.sendto(self.data,self.target)
             print "Sent message with id: "+str(ident)
             time.sleep(2)
-            for i in confirmed:
+            for i in self.confirmed:
                 if i==ident:
                     success=True
-                    confirmed.remove(ident)
+                    self.confirmed.remove(ident)
             if success:
                 print "Sending of: "+str(ident)+" confirmed by remote computer"
                 break

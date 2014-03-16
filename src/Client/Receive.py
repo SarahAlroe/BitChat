@@ -13,10 +13,10 @@ class Receive (threading.Thread):
         
         #Take sock in as a variable
         self.sock = sock
+        self.confirmed=[]
         #Define global variables
         global out
         global msglist
-        global confirmed
         global connected
         connected = False
         global lrec
@@ -97,8 +97,8 @@ class Receive (threading.Thread):
                     #If it's a confirmation that a message has been received
                 if out["type"] == "confirm":
                     #Add the confirmed id to the list of confirm
-                    confirmed.append(id)
-                    print "Confirmed: "+str(confirmed)
+                    self.confirmed.append(id)
+                    print "Confirmed: "+str(self.confirmed)
                     #If it's userdata, initialise a connection with target:
                 if out["type"] == 'userdata':
                     print "Trying to connect..."
