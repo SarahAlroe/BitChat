@@ -51,6 +51,7 @@ class BitChatApp(App):
         self.ccommunication.initializeConnection(self, self.HOST, self.PORT)
         sock = self.ccommunication.getSock()
         self.receiver = Receive(sock,self)
+        self.receiver.start()
         pass
     
     def getccommunication(self):

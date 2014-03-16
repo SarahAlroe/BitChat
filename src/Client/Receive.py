@@ -14,13 +14,13 @@ class Receive (threading.Thread):
         #Take sock in as a variable
         self.sock = sock
         self.confirmed=[]
+        self.lrec=[]
+        self.loggedin=False
         #Define global variables
         global out
         global msglist
         global connected
         connected = False
-        global lrec
-        global loggedin
         global targetwindow
         
     #punch to another client
@@ -83,15 +83,16 @@ class Receive (threading.Thread):
                     #if the first confirm from a message did not arrive!
                     #confirm(id,sender)
                     #Make sure the message has not already been received: 
-                    if lrec.count(id)!=0:
+                    if self.lrec.count(id)!=0:
+                        print "The message has already been recieved once! Continuing to next loop"
                         continue
                     else:
-                        lrec.append(id)
+                        self.lrec.append(id)
                     
                 #Keep the lrec list at 20 items max:
-                if len(lrec)>20:
-                    del lrec[0]
-                print "lrec: "+str(lrec)
+                if len(self.lrec)>20:
+                    del self.lrec[0]
+                print "lrec: "+str(self.lrec)
                 print "Finding action"
                 #What does this message contain?
                     #If it's a confirmation that a message has been received
@@ -112,9 +113,9 @@ class Receive (threading.Thread):
                     self.client.holePunched(connected, (out['target'][0],out['target'][1]))
                 if out["type"] == 'register':
                     print "Registered! var loggedin is now: ",
-                    loggedin=True
+                    self.loggedin=True
                     self.client.registeredOnServer();
-                    print loggedin
+                    print self.loggedin
                     print "Gonna show ze targetwindow"
                     
 #                     nsconnect()
