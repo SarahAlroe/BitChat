@@ -116,10 +116,6 @@ class Receive (threading.Thread):
                     self.loggedin=True
                     self.client.registeredOnServer();
                     print self.loggedin
-                    print "Gonna show ze targetwindow"
-                    
-#                     nsconnect()
-                    print "Well there we go"
                     
                     
             except:

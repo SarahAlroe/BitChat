@@ -1,10 +1,12 @@
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.popup import Popup
 import kivy
 from ClientCommunication import ClientCommunication
 from Receive import Receive
+from time import sleep
 kivy.require('1.0.6') # replace with your current kivy version !
 
 
@@ -16,13 +18,26 @@ class LoginScreen(Screen):
         self.whilelogin = Popup(title='Logging in',content=Label(text='Please wait'),auto_dismiss=False,size_hint=(0.5, 0.5))
         self.whilelogin.open()
         App.get_running_app().ccommunication.login(username, password)
-        print username
-        print password
-        print self.te_username.text #this is another way - it can be used to access widget 
-        
-        App.get_running_app().sm.current = "friends" #use App.get_running_app() to access current ap
-        
-    
+        timeoutcountdown=12
+        while (timeoutcountdown > 0):
+            print "Trying to reach server. Fail in: "+str(timeoutcountdown)
+            if (App.get_running_app().receiver.loggedin):
+                loginsuccess=True
+                break
+            sleep(0.5)
+            timeoutcountdown-=1
+        else:
+            loginsuccess=False
+        if (loginsuccess):
+            print "Successfully logged in as" +username
+            App.get_running_app().sm.current = "friends" #use App.get_running_app() to access current app
+            self.whilelogin.dismiss()
+        else:
+            self.whilelogin.dismiss()
+            loginfailbutton = Button(text='Please:\nCheck your connection\nCheck your login details\nTry again')
+            self.loginfail = Popup(title='Login failed',content=loginfailbutton,auto_dismiss=False,size_hint=(0.5, 0.5))
+            loginfailbutton.bind(on_press=self.loginfail.dismiss)
+            self.loginfail.open()
     pass
 
 class SelectFriendsScreen(Screen):
