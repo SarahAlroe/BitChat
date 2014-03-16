@@ -19,6 +19,7 @@
 				#halign: 'middle'
 				valign: 'top'
 				foreground_color: 0,255,0,1
+				font_name: "../../res/fonts/Consolas.ttf"
 			TextInput:
 				id: username
 				size_hint: 1, 0.2
@@ -48,7 +49,42 @@
 				size_hint_y: 1
 		Label:
 			size_hint_x: 0.5
-
+			
+			
+<SelectFriendsScreen>:
+	list_friends: list
+	BoxLayout:
+		orientation: "horizontal"
+		Label:
+			size_hint_x: 0.5
+		BoxLayout:
+			orientation: "vertical"
+			size_hint_x: 1
+			spacing: 10
+			
+			Label:
+				size_hint_y: 1
+				text: 'Friends'
+				#halign: 'middle'
+				valign: 'top'
+				foreground_color: 0,255,0,1
+				font_name: "../../res/fonts/Consolas.ttf"
+	
+#		    ListView:
+#		    	id:list
+#		        size_hint: 1, .8
+#		        #item_strings: [str(index) for index in range(100)]
+#		        on_selection_change: root.selection_changed()
+#		        background_color: 0,25,0,0.1
+#				foreground_color: 0,255,0,1
+#				font_name: "../../res/fonts/Consolas.ttf"
+#		        ListAdapter:
+#					id:list
+#					data: ["a","b½"]
+		        
+		Label:
+			size_hint_x: 0.5
+			
 <ChatScreen>:
 	BoxLayout:
 		orientation: "vertical"

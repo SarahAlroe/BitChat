@@ -23,35 +23,35 @@ class Receive (threading.Thread):
         global loggedin
         global targetwindow
         
-#punch to another client
-def puncher(remote_host, port, sock):
- 
-    my_token = str(random.random())
-    remote_token = "_"
-
-    remote_knows_our_token = False
- 
-    for i in range(2):
-        print "Connecting: "+str(i)
-        r,w,x = select([sock], [sock], [], 0)
- 
-        if remote_token != "_" and remote_knows_our_token:
-            break
- 
-        if r:
-            data, addr = sock.recvfrom(1024)
-            if remote_token == "_":
-                remote_token = data.split()[0]
-            if len(data.split()) == 3:
-                remote_knows_our_token = True
- 
-        if w:
-            data = "%s %s" % (my_token, remote_token)
-            if remote_token != "_": data += " ok"
-            sock.sendto(data, (remote_host, port))
-        time.sleep(0.5)
- 
-    return remote_token != "_"        
+    #punch to another client
+    def puncher(self,remote_host, port, sock):
+     
+        my_token = str(random.random())
+        remote_token = "_"
+    
+        remote_knows_our_token = False
+     
+        for i in range(2):
+            print "Connecting: "+str(i)
+            r,w,x = select([sock], [sock], [], 0)
+     
+            if remote_token != "_" and remote_knows_our_token:
+                break
+     
+            if r:
+                data, addr = sock.recvfrom(1024)
+                if remote_token == "_":
+                    remote_token = data.split()[0]
+                if len(data.split()) == 3:
+                    remote_knows_our_token = True
+     
+            if w:
+                data = "%s %s" % (my_token, remote_token)
+                if remote_token != "_": data += " ok"
+                sock.sendto(data, (remote_host, port))
+            time.sleep(0.5)
+     
+        return remote_token != "_"        
         
     def run(self):
         print "Starting receiving thread"
@@ -103,7 +103,7 @@ def puncher(remote_host, port, sock):
                 if out["type"] == 'userdata':
                     print "Trying to connect..."
                     #Run hole puncher:
-                    if puncher(out['target'][0],out['target'][1],sock):
+                    if self.puncher(out['target'][0],out['target'][1],self.sock):
                         print "Connection sucessful!"
                         connected=True
                         print "0"

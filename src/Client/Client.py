@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
 import kivy
+from ClientCommunication import ClientCommunication
+from Receive import Receive
 kivy.require('1.0.6') # replace with your current kivy version !
 
 
@@ -11,10 +13,15 @@ class LoginScreen(Screen):
         print username
         print password
         print self.te_username.text #this is another way - it can be used to access widget 
-        App.get_running_app().sm.current = "chat" #use App.get_running_app() to access current ap
+        
+        App.get_running_app().sm.current = "friends" #use App.get_running_app() to access current ap
         
     
     pass
+
+class SelectFriendsScreen(Screen):
+    def build(self):
+        self.list_friends.data = ["Joan","Hugo","Silas"]
 
 class ChatScreen(Screen):
     pass
@@ -29,16 +36,18 @@ class BitChatApp(App):
         self.sm = ScreenManager()
         self.sm.add_widget(LoginScreen(name='login'))
         self.sm.add_widget(ChatScreen(name='chat'))
+        self.sm.add_widget(SelectFriendsScreen(name='friends'))
         return self.sm
     
     def on_start(self):
         self.sm.current = "chat"
+        ccommunication = ClientCommunication() 
+        ccommunication.initializeConnection(self.HOST, self.PORT)
+        sock = ccommunication.getSock()
+        receiver = Receive(sock,self)
         pass
       
-#         ccommunication = ClientCommunication() 
-#         ccommunication.initializeConnection(self.HOST, self.PORT)
-#         sock = ccommunication.getSock()
-#         receiver = Receive(sock,self)
+
         
     
     def holePunched(self,status, target):
