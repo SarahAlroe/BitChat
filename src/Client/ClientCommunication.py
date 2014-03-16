@@ -11,11 +11,18 @@ class MyClass(object):
     '''
     classdocs
     '''
+#Login function
+def login(self, username, password):
+    data={'type':"register", 'username': username, 'lanIP': self.sock.gethostbyname(socket.gethostname())}
+    jdata=json.dumps(data)
+    Send(self.sock, jdata, (self.serverAdr, self.serverPort)).start()
+    print "Sent:     {}".format(data)
+
 #connects this client to server
 def connect(self, username, targetUser):
     data = {'type':"connect", 'username': username, 'lanIP': socket.gethostbyname(socket.gethostname()), "targetuser": targetUser}
     jdata = json.dumps(data)
-    Send(self.sock, jdata, (self.server, self.serverPort)).start()
+    Send(self.sock, jdata, (self.serverAdr, self.serverPort)).start()
     print "Sent:     {}".format(data)
     time.sleep(1)
 
