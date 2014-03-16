@@ -1,6 +1,7 @@
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.popup import Popup
 import kivy
 from ClientCommunication import ClientCommunication
 from Receive import Receive
@@ -9,7 +10,12 @@ kivy.require('1.0.6') # replace with your current kivy version !
 
 class LoginScreen(Screen):
     def btn_login_pressed(self, username, password):
-        print "login pressed, changing window"
+        print "login pressed, beginning login operation"
+        print "Opening popup"
+        #This should be moved to .kv file
+        self.whilelogin = Popup(title='Logging in',content=Label(text='Please wait'),auto_dismiss=False,size_hint=(0.5, 0.5))
+        self.whilelogin.open()
+        App.ccommunication.login(username, password)
         print username
         print password
         print self.te_username.text #this is another way - it can be used to access widget 
@@ -41,18 +47,19 @@ class BitChatApp(App):
     
     def on_start(self):
         self.sm.current = "chat"
-        ccommunication = ClientCommunication() 
-        ccommunication.initializeConnection(self.HOST, self.PORT)
-        sock = ccommunication.getSock()
+        self.ccommunication = ClientCommunication() 
+        self.ccommunication.initializeConnection(self.HOST, self.PORT)
+        sock = self.ccommunication.getSock()
         receiver = Receive(sock,self)
         pass
-      
-
-        
+    
+    def getccommunication(self):
+        return self.ccommunication
     
     def holePunched(self,status, target):
         print "hole has been punched"
         pass
+    
     def registeredOnServer(self):
         print "has registered on server"
         pass
