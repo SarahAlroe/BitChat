@@ -15,7 +15,7 @@ class LoginScreen(Screen):
         #This should be moved to .kv file
         self.whilelogin = Popup(title='Logging in',content=Label(text='Please wait'),auto_dismiss=False,size_hint=(0.5, 0.5))
         self.whilelogin.open()
-        App.ccommunication.login(username, password)
+        App.get_running_app().ccommunication.login(username, password)
         print username
         print password
         print self.te_username.text #this is another way - it can be used to access widget 
