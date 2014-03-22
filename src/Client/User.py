@@ -30,3 +30,9 @@ class User():
     def getUser(self):
         returnlist=[self._name, self._ip, self._port, self._localIp, self._status]
         return returnlist
+    def setUser(self,newName,newIp,newPort,newLocalIp,newStatus):
+        self._name=newName
+        self._ip=newIp
+        self._ip=newPort
+        self._localIp=newLocalIp
+        self._status=newStatus
