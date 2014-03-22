@@ -102,7 +102,7 @@ class Receive (threading.Thread):
                     self.confirmed.append(id)
                     print "Confirmed: "+str(self.confirmed)
                     #If it's userdata, initialise a connection with target:
-                if out["type"] == 'userdata':
+                elif out["type"] == 'userdata':
                     print "Trying to connect..."
                     #Run hole puncher:
                     if self.puncher(out['target'][0],out['target'][1],self.sock):
@@ -112,7 +112,10 @@ class Receive (threading.Thread):
                     else:
                         print "Connection failed!"
                     self.client.holePunched(connected, (out['target'][0],out['target'][1]))
-                if out["type"] == 'register':
+                elif out["type"] == 'userinfo':
+                    print "Setting new userinfo for user " + out["username"]
+                    #self.ap.dict.username.setUser(out["username"],out["ip"],out["port"],out["localip"],out[status])
+                elif out["type"] == 'register':
                     print "Registered! var loggedin is now: ",
                     self.loggedin=True
                     self.client.registeredOnServer();

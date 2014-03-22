@@ -52,6 +52,7 @@ class Handler(SocketServer.BaseRequestHandler):
             retmsg["type"]="userdata"
             retmsg["target"]=_users[inn["targetuser"]]
             doretmsg=True
+        
         elif inn["type"]=="getuserinfo":
             retmsg["type"] = "userinfo"
             retmsg["username"] = inn["username"]
