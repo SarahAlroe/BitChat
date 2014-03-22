@@ -101,7 +101,12 @@ class Receive (threading.Thread):
                     #Add the confirmed id to the list of confirm
                     self.confirmed.append(id)
                     print "Confirmed: "+str(self.confirmed)
-                    #If it's userdata, initialise a connection with target:
+                
+                elif out["type"] == "msg":
+                    print "Recieved new message from "+out["username"]+": "
+                    print out["msg"]
+                
+                #If it's userdata, initialise a connection with target:
                 elif out["type"] == 'userdata':
                     print "Trying to connect..."
                     #Run hole puncher:
