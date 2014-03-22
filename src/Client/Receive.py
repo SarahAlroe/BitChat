@@ -16,6 +16,7 @@ class Receive (threading.Thread):
         self.confirmed=[]
         self.lrec=[]
         self.loggedin=False
+        self.ap = self.client
         #Define global variables
         global out
         global msglist
@@ -116,6 +117,15 @@ class Receive (threading.Thread):
                     self.loggedin=True
                     self.client.registeredOnServer();
                     print self.loggedin
+                    print "Comfirmed username is now: ",
+                    self.ap.username=out["username"]
+                    print self.ap.username
+                    print "Current ip is: ",
+                    self.ap.ip=out["ip"]
+                    print self.ap.ip
+                    print "Current port is: ",
+                    self.ap.port=out["port"]
+                    print self.ap.port
                     
                     
             except:
