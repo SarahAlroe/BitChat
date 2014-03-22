@@ -52,6 +52,13 @@ class Handler(SocketServer.BaseRequestHandler):
             retmsg["type"]="userdata"
             retmsg["target"]=_users[inn["targetuser"]]
             doretmsg=True
+        elif inn["type"]=="getuserinfo":
+            retmsg["type"] = "userinfo"
+            retmsg["username"] = inn["username"]
+            retmsg["ip"] = _users[inn["username"]][0]
+            retmsg["port"] = _users[inn["username"]][1]
+            retmsg["localip"] = _users[inn["username"]][2]
+            retmsg["status"] = "Online" #Change this to something else in the future...
         
         #If an extra message is needed:
         if doretmsg:
