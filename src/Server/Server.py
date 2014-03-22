@@ -30,10 +30,14 @@ class Handler(SocketServer.BaseRequestHandler):
         doretmsg=False
         if inn["type"]=="register":
             _users[inn["username"]] = (self.client_address[0], self.client_address[1], inn["lanIP"], time.time())#[User]= (ip, port, internal ip)
-            retmsg["type"]="register"
+            retmsg["type"] = "register"
+            retmsg["username"] = inn["username"]
+            retmsg["ip"] = self.client_address[0]
+            retmsg["port"] = self.client_address[1]
+            retmsg["localip"] = inn["lanIP"]
             print "The users var now looks like this:"
             print _users
-            doretmsg=True
+            doretmsg = True
 
         elif inn["type"]=="getusers":
             retmsg["type"]="users"
