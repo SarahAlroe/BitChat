@@ -128,6 +128,7 @@ class Receive (threading.Thread):
                     print self.ap.port
                     
                     
+                    
             except:
                 pass
         print "Exiting " + self.name
