@@ -44,6 +44,13 @@ class ClientCommunication():
         sock.sendto(jconfirm,target)
         print "Sent confirmation for message with id: "+cid
         
+    def sendmsg(self, username, msg):
+        print "Sending message \"" + msg + "\" to user " + username
+        data = {'type':"msg", 'username':self.ap.username, 'msg':msg}
+        jdata = json.dumps(data)
+        Send(self.sock, jdata, (recieverip, recieverport)).start() #Replace vars with new function
+        print "The message to "+username+"was queued for sending!"
+
     def initializeConnection(self, client, serverAdress, serverPort):
         self.client = client
         self.serverAdr = serverAdress
@@ -56,10 +63,9 @@ class ClientCommunication():
         
     def getSock(self):
         return self.sock
-        
-    
     
     
     def __init__(self):
+        self.ap=App.get_running_app()
         pass
             
