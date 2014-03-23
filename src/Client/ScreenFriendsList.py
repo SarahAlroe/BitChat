@@ -1,7 +1,18 @@
 from kivy.uix.screenmanager import ScreenManager, Screen
 class ScreenFriendsList(Screen):
     def on_pre_enter(self): 
-        self.ids.list.item_strings = {'Joan', 'Hugo', 'Silas', 'SpaceTrold', 'Troels' ,'Bedstemor', 'Pelle'}
+        self.ids.list.adapter.data = {'Joan', 'Hugo', 'Silas', 'SpaceTrold', 'Troels' ,'Bedstemor', 'Pelle'}
+      
+    def userConverter(self,index, name):
+       return {"text": name}     
+    '''     
+    def userConverter(self, index, name):
+        result = {
+        "name": name}
+#         "status_message": "funky msg",
+#         "online_status": "Cool status"}
+        return result
+    '''    
         
 #         list_view = ListView(item_strings=[str(index) for index in range(100)])
 

@@ -65,7 +65,7 @@ class ClientCommunication():
         return self.sock
     
     
-    def __init__(self):
-        self.ap=App.get_running_app()
+    def __init__(self, client):
+        self.ap=client;
         pass
             
