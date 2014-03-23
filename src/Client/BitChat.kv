@@ -1,6 +1,9 @@
 #:kivy 1.8
 #:import ListItemButton kivy.uix.listview.ListItemButton
 #:import ListAdapter kivy.adapters.listadapter.ListAdapter
+#:import FriendListItem FriendListItem
+#:import ScreenFriendsList ScreenFriendsList
+
 
 <ScreenLogin>:
 	te_username: username
@@ -65,7 +68,11 @@
 		
 		ListView:
 			id: list
-			item_strings: [str(index) for index in range(100)]
+			adapter: 
+				ListAdapter(
+				data=["1","9","3"],
+				cls=ListItemButton, 
+				args_converter=root.userConverter)
 			
 <ScreenChat>:
 	BoxLayout:
