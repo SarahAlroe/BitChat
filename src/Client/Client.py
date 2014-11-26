@@ -13,6 +13,7 @@ from kivy.adapters.listadapter import ListAdapter
 from kivy.uix.listview import ListView
 from time import sleep
 import kivy
+from kivy.config import Config
 kivy.require('1.8.0') # replace with your current kivy version !
 
 
@@ -31,6 +32,9 @@ class BitChatApp(App):
         return self.sm
     
     def on_start(self):
+        Config.set('kivy', 'dekstop', '1')
+        Config.set('kivy', 'fullscreen', '0')
+        Config.write()
         self.sm.current = "login"
         self.ccommunication = ClientCommunication(self) 
         self.ccommunication.initializeConnection(self, self.HOST, self.PORT)
