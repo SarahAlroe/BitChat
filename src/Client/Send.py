@@ -12,7 +12,7 @@ class Send (threading.Thread):
         self.confirmed = confirmed
     def run(self):
         ident=random.randint(1, 1000000000)
-        while True:
+        for x in range(15):
             success=False
             print "Trying to send message with id: "+str(ident)
             udata=json.loads(self.data)
@@ -28,3 +28,5 @@ class Send (threading.Thread):
             if success:
                 print "Sending of: "+str(ident)+" confirmed by remote computer"
                 break
+        if not success:
+            print "Sending of: "+str(ident)+ ' has failed!'

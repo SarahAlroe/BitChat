@@ -105,10 +105,14 @@ class Receive (threading.Thread):
                 elif out["type"] == "msg":
                     print "Recieved new message from "+out["username"]+": "
                     print out["msg"]
+                    self.ap.chatBox += "\n"+out["username"]+": "+out["msg"]
+
                 
                 #If it's userdata, initialise a connection with target:
                 elif out["type"] == 'userdata':
                     print "Trying to connect..."
+                    if (out["target"][0]==self.ap.ip):
+                        out["target"][0]=out["target"][2]
                     #Run hole puncher:
                     if self.puncher(out['target'][0],out['target'][1],self.sock):
                         print "Connection sucessful!"

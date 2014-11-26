@@ -23,7 +23,7 @@ class ClientCommunication():
     def connect(self, username, targetUser):
         data = {'type':"connect", 'username': username, 'lanIP': socket.gethostbyname(socket.gethostname()), "targetuser": targetUser}
         jdata = json.dumps(data)
-        Send(self.sock, jdata, (self.server, self.serverPort)).start()
+        Send(self.sock, self.client.receiver.confirmed, jdata, (self.serverAdr, self.serverPort)).start()
         print "Sent:     {}".format(data)
         time.sleep(1)
     
@@ -67,7 +67,7 @@ class ClientCommunication():
         self.serverPort = serverPort
         # set sock
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.sock.bind(("", 0))
+        self.sock.bind(("", 5007))
         self.sock.setblocking(0)
         self.sock.settimeout(20) 
         

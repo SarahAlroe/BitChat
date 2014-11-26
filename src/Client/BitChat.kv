@@ -3,6 +3,10 @@
 #:import ListAdapter kivy.adapters.listadapter.ListAdapter
 #:import ScreenFriendsList ScreenFriendsList
 
+#:set titleFont "../../res/fonts/VT323.ttf"
+#:set textFont "../../res/fonts/Consolas.ttf"
+#:set borderImage "../../res/Green border.png"
+#:set border [6,6,6,6]
 
 <ScreenLogin>:
 	te_username: username
@@ -23,15 +27,18 @@
 				#halign: 'middle'
 				valign: 'top'
 				foreground_color: 0,255,0,1
-				font_name: "../../res/fonts/Consolas.ttf"
+				font_name: titleFont
 			TextInput:
 				id: username
 				size_hint: 1, 0.2
 				multiline: False
-				font_name: "../../res/fonts/Consolas.ttf"
+				font_name: titleFont
 				hint_text: "Username"
 				background_color: 0,25,0,0.1
 				foreground_color: 0,255,0,1
+				border: border
+				background_normal: borderImage
+				background_active: borderImage
 				
 			TextInput:
 				id: password
@@ -39,18 +46,27 @@
 				multiline: False
 				password: True
 				readonly: True
-				font_name: "../../res/fonts/Consolas.ttf"
+				font_name: titleFont
 				hint_text: "Password"
 				background_color: 0,25,0,0.1
 				foreground_color: 0,255,0,1
+				border: border
+				background_normal: borderImage
+				background_active: borderImage
 			
 			Button:
-				font_name: "../../res/fonts/Consolas.ttf"
+				font_name: titleFont
+				border: border
+				background_normal: borderImage
+				background_down: borderImage
 				text: ">"
 				size_hint: 1, 0.25
 				on_press: root.btn_login_pressed(username.text,password.text)
 			Label:
+				id: loginText
 				size_hint_y: 1
+				foreground_color: 0,255,0,1
+				text: ""
 		Label:
 			size_hint_x: 0.5
 			
@@ -61,9 +77,21 @@
 	BoxLayout:
 		id: bx_layout 
 		orientation: "horizontal"
-		Button:
-			text: "update"
-			on_press: root.update()
+		BoxLayout:
+			orientation: "vertical"
+			spacing: 5
+			Button:
+				text: "Chat!"
+				border: border
+				background_normal: borderImage
+				background_down: borderImage
+				on_press: root.chat()
+			Button:
+				text: "update"
+				border: border
+				background_normal: borderImage
+				background_down: borderImage
+				on_press: root.update()
 		
 		ListView:
 			id: list
@@ -80,12 +108,16 @@
 		
 		
 		TextInput:
-			font_name: "../../res/fonts/Consolas.ttf"
+			id: chatBox
+			font_name: textFont
 			text: "Main container default text"
 			#valign: "top"
 			size_hint: 1, 1
 			background_color: 0,0,0,1
 			foreground_color: 0,255,0,1
+			border: border
+			background_normal: borderImage
+			background_active: borderImage
 			
 		BoxLayout:
 			orientation: "horizontal"
@@ -93,11 +125,18 @@
 			size_hint: 1, 0.2
 			
 			TextInput:
-				font_name: "../../res/fonts/Consolas.ttf"
+				id: sendBox
+				font_name: textFont
 				text: "default input text"
+				border: border
+				background_normal: borderImage
+				background_active: borderImage
 				
 			Button:
-				font_name: "../../res/fonts/Consolas.ttf"
+				font_name: titleFont
 				text: ">"
 				size_hint_x: 0.15
-				on_press: root.manager.current = 'friends'
+				border: border
+				background_normal: borderImage
+				background_down: borderImage
+				on_press: root.sendMessage(sendBox.text)
