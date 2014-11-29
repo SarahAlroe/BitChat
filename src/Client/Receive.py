@@ -118,6 +118,7 @@ class Receive (threading.Thread):
                 elif out["type"] == 'userdata':
                     print "Setting new data!"
                     self.ap.dict.setUser(out["target"][4],out["target"][0],out["target"][1],out["target"][2],out["target"][3])
+                    self.ap.dict.currentPartner=out["target"][4]
                     print "Trying to connect..."
                     if (out["target"][0]==self.ap.ip):
                         out["target"][0]=out["target"][2]

@@ -19,3 +19,4 @@ class Dictionary():
         self.localIp={}
         self.port={}
         self.status={}
+        self.currentPartner=""

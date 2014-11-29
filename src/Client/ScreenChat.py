@@ -5,6 +5,6 @@ class ScreenChat(Screen):
     def on_pre_enter(self):
         App.get_running_app().chatBox=self.ids.chatBox.text
     def sendMessage(self,text):
-        App.get_running_app().ccommunication.sendmsg(App.get_running_app().username, text)
+        App.get_running_app().ccommunication.sendmsg(App.get_running_app().dict.currentPartner, text)
         self.ids.chatBox.text += "\n"+App.get_running_app().username+": "+text
     pass
