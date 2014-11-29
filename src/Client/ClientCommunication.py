@@ -26,7 +26,7 @@ class ClientCommunication():
         Send(self.sock, self.client.receiver.confirmed, jdata, (self.serverAdr, self.serverPort)).start()
         print "Sent:     {}".format(data)
         time.sleep(1)
-    
+
     #todo - remove this at some point
     def nsconnect(self):
         print "1"
@@ -36,7 +36,8 @@ class ClientCommunication():
         print "3"
         Send(self.sock, jdata, (self.serverAdr, self.serverPort)).start()
         print "Sent:     {}".format(data)
-    
+
+    #Sends confirm message to specified target
     def confirm(self,cid,target):
         global sock
         confirm={"type": "confirm", "id": cid}
