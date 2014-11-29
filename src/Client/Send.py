@@ -14,7 +14,7 @@ class Send (threading.Thread):
         ident=random.randint(1, 1000000000)
         for x in range(15):
             success=False
-            print "Trying to send message with id: "+str(ident)
+            print "Trying to send message with id: "+str(ident)+" to: "+str(self.target)
             udata=json.loads(self.data)
             udata["id"]=ident
             self.data=json.dumps(udata)
