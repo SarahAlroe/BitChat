@@ -34,6 +34,7 @@ class Receive (threading.Thread):
      
         for i in range(10):
             print "Connecting: "+str(i)
+            """
             r,w,x = select([sock], [sock], [], 0)
      
             if remote_token != "_" and remote_knows_our_token:
@@ -51,7 +52,11 @@ class Receive (threading.Thread):
                 if remote_token != "_": data += " ok"
                 sock.sendto(data, (remote_host, port))
             #time.sleep(0.5)
-     
+            """
+            data = "%s %s" % (my_token, remote_token)
+            if remote_token != "_": data += " ok"
+            sock.sendto(data, (remote_host, port))
+        print"Puncher done..."
         return remote_token != "_"        
         
     def run(self):
