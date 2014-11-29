@@ -110,7 +110,7 @@
 		TextInput:
 			id: chatBox
 			font_name: textFont
-			text: "Main container default text"
+			text: ""
 			#valign: "top"
 			size_hint: 1, 1
 			foreground_color: 0,255,0,1
@@ -131,6 +131,7 @@
 				border: border
 				background_normal: borderImage
 				background_active: borderImage
+				on_enter: root.sendMessage(sendBox.text)
 				
 			Button:
 				font_name: titleFont
