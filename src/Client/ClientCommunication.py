@@ -52,7 +52,7 @@ class ClientCommunication():
         else:
             ip=self.ap.dict.getIp(username)
         port=self.ap.dict.getPort(username)
-        addresslist=[ip,port]
+        addresslist=(ip,port)
         return addresslist
         
     def sendmsg(self, username, msg):
