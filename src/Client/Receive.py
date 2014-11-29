@@ -111,7 +111,7 @@ class Receive (threading.Thread):
                 elif out["type"] == "msg":
                     print "Recieved new message from "+out["username"]+": "
                     print out["msg"]
-                    self.ap.chatBox += "\n"+out["username"]+": "+out["msg"]
+                    self.ap.sm.get_screen("chat").ids.chatBox.text += "\n"+out["username"]+": "+out["msg"]
 
                 
                 #If it's userdata, initialise a connection with target:
