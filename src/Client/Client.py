@@ -3,6 +3,7 @@ from Receive import Receive
 from ScreenLogin import ScreenLogin
 from ScreenFriendsList import ScreenFriendsList
 from ScreenChat import ScreenChat
+from Dictionary import Dictionary
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.label import Label
@@ -41,6 +42,7 @@ class BitChatApp(App):
         sock = self.ccommunication.getSock()
         self.receiver = Receive(sock,self)
         self.receiver.start()
+        self.dict = Dictionary()
         pass
     
     def getccommunication(self):

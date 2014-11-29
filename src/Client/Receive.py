@@ -116,6 +116,8 @@ class Receive (threading.Thread):
                 
                 #If it's userdata, initialise a connection with target:
                 elif out["type"] == 'userdata':
+                    print "Setting new data!"
+                    self.ap.dict.setUser(out["target"][4],out["target"][0],out["target"][1],out["target"][2],out["target"][3])
                     print "Trying to connect..."
                     if (out["target"][0]==self.ap.ip):
                         out["target"][0]=out["target"][2]
@@ -129,7 +131,7 @@ class Receive (threading.Thread):
                     self.client.holePunched(connected, (out['target'][0],out['target'][1]))
                 elif out["type"] == 'userinfo':
                     print "Setting new userinfo for user " + out["username"]
-                    #self.ap.dict.username.setUser(out["username"],out["ip"],out["port"],out["localip"],out[status])
+                    self.ap.dict.setUser(out["username"],out["ip"],out["port"],out["localip"],out["status"])
                 elif out["type"] == 'register':
                     print "Registered! var loggedin is now: ",
                     self.loggedin=True

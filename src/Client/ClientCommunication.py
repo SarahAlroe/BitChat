@@ -47,19 +47,19 @@ class ClientCommunication():
         
     def getaddress(self, username):
         print "Getting ip & port of " + username
-        #if (self.ap.dict.username.getIp()==self.ap.ip):
-        #    ip=self.ap.dict.username.getLocalIp()
-        #else:
-        #    ip=self.ap.dict.username.getIp()
-        #port=self.ap.dict.username.getPort()
-        #addresslist=[ip,port]
-        #return addresslist
+        if (self.ap.dict.getIp(username)==self.ap.ip):
+            ip=self.ap.dict.getLocalIp(username)
+        else:
+            ip=self.ap.dict.getIp(username)
+        port=self.ap.dict.getPort(username)
+        addresslist=[ip,port]
+        return addresslist
         
     def sendmsg(self, username, msg):
         print "Sending message \"" + msg + "\" to user " + username
         data = {'type':"msg", 'username':self.ap.username, 'msg':msg}
         jdata = json.dumps(data)
-        Send(self.sock, jdata, (self.getaddress(username))).start() #Replace vars with new function
+        Send(self.sock, self.client.receiver.confirmed, jdata, (self.getaddress(username))).start() #Replace vars with new function
         print "The message to "+username+"was queued for sending!"
 
     def initializeConnection(self, client, serverAdress, serverPort):

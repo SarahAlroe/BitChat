@@ -30,7 +30,7 @@ class Handler(SocketServer.BaseRequestHandler):
         doretmsg=False
         retmsg["id"] = random.randint(1, 1000000000)
         if inn["type"]=="register":
-            _users[inn["username"]] = (self.client_address[0], self.client_address[1], inn["lanIP"], time.time())#[User]= (ip, port, internal ip)
+            _users[inn["username"]] = (self.client_address[0], self.client_address[1], inn["lanIP"], time.time(), inn["username"])#[User]= (ip, port, internal ip)
             retmsg["type"] = "register"
             retmsg["username"] = inn["username"]
             retmsg["ip"] = self.client_address[0]
