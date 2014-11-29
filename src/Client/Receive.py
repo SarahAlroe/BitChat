@@ -57,7 +57,8 @@ class Receive (threading.Thread):
             if remote_token != "_": data += " ok"
             sock.sendto(data, (remote_host, port))
         print"Puncher done..."
-        return remote_token != "_"        
+        #return remote_token != "_"
+        return True 
         
     def run(self):
         print "Starting receiving thread"
