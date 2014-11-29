@@ -3,6 +3,8 @@ import random
 import select
 import threading
 import time
+import sys
+import traceback
 class Receive (threading.Thread):
     def __init__(self,sock,client):
         #Init threading:
@@ -51,8 +53,7 @@ class Receive (threading.Thread):
                 sock.sendto(data, (remote_host, port))
             time.sleep(0.5)
         print"Puncher done..."
-        #return remote_token != "_"
-        return True 
+        return remote_token != "_"
         
     def run(self):
         print "Starting receiving thread"
@@ -142,4 +143,5 @@ class Receive (threading.Thread):
                     self.ap.port=out["port"]
                     print self.ap.port
             except:          
-                print "Exiting " + self.name
+                exc_type, exc_value, exc_traceback = sys.exc_info()
+                traceback.print_exception(exc_type, exc_value, exc_traceback)
