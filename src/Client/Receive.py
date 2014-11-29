@@ -34,8 +34,7 @@ class Receive (threading.Thread):
      
         for i in range(10):
             print "Connecting: "+str(i)
-            r,w,x = select([sock], [sock], [], 0)
-     
+            r,w,x = select.select([sock], [sock], [], 0)
             if remote_token != "_" and remote_knows_our_token:
                 break
      
@@ -72,7 +71,7 @@ class Receive (threading.Thread):
                 #Turn Json to Dict:
                 out = json.loads(jout)
                 print "New rec, type: "+out["type"]+", Id: ",
-
+    
                 #Get id from dict:
                 id = out["id"]
                 print id
@@ -107,7 +106,7 @@ class Receive (threading.Thread):
                     print "Recieved new message from "+out["username"]+": "
                     print out["msg"]
                     self.ap.sm.get_screen("chat").ids.chatBox.text += "\n"+out["username"]+": "+out["msg"]
-
+    
                 
                 #If it's userdata, initialise a connection with target:
                 elif out["type"] == 'userdata':
@@ -142,9 +141,5 @@ class Receive (threading.Thread):
                     print "Current port is: ",
                     self.ap.port=out["port"]
                     print self.ap.port
-                    
-                    
-                    
-            except:
-                pass
-        print "Exiting " + self.name
+            except:          
+                print "Exiting " + self.name
