@@ -131,7 +131,8 @@
 				border: border
 				background_normal: borderImage
 				background_active: borderImage
-				on_enter: root.sendMessage(sendBox.text)
+				multiline: False
+				on_text_validate: root.sendMessage(sendBox.text)
 				
 			Button:
 				font_name: titleFont
