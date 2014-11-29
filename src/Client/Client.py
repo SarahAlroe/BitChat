@@ -33,7 +33,7 @@ class BitChatApp(App):
     
     def on_start(self):
         Config.set('kivy', 'dekstop', '1')
-        Config.set('kivy', 'fullscreen', '0')
+        Config.set('graphics', 'fullscreen', '0')
         Config.write()
         self.sm.current = "login"
         self.ccommunication = ClientCommunication(self) 

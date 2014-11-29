@@ -28,6 +28,7 @@ class Handler(SocketServer.BaseRequestHandler):
         print "Confirm sent with confirmid "+str(inn["id"])+" !"
 
         doretmsg=False
+        retmsg["id"] = random.randint(1, 1000000000)
         if inn["type"]=="register":
             _users[inn["username"]] = (self.client_address[0], self.client_address[1], inn["lanIP"], time.time())#[User]= (ip, port, internal ip)
             retmsg["type"] = "register"
@@ -45,7 +46,7 @@ class Handler(SocketServer.BaseRequestHandler):
             doretmsg=True
 
         elif inn["type"]=="connect":
-            targetmsg={"type": "userdata", "target": _users[inn["username"]]}
+            targetmsg={"type": "userdata", "target": _users[inn["username"]], "id": retmsg["id"]}
             jtargetmsg=json.dumps(targetmsg)
             socket.sendto(jtargetmsg,_users[inn["targetuser"]][0:2])#Send a message to target containing connection info
             print "Sent to "+_users[inn["targetuser"]][0]+":"+str(_users[inn["targetuser"]][1])+": "+str(targetmsg)
