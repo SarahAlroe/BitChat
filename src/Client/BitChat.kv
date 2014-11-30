@@ -6,6 +6,7 @@
 #:set titleFont "../../res/fonts/VT323.ttf"
 #:set textFont "../../res/fonts/Consolas.ttf"
 #:set borderImage "../../res/Green border.png"
+#:set borderImageDown "../../res/Green border - down.png"
 #:set border [6,6,6,6]
 
 <ScreenLogin>:
@@ -39,6 +40,7 @@
 				border: border
 				background_normal: borderImage
 				background_active: borderImage
+				cursor_color: 0,1,0,1
 				
 			TextInput:
 				id: password
@@ -53,12 +55,13 @@
 				border: border
 				background_normal: borderImage
 				background_active: borderImage
+				cursor_color: 0,1,0,1
 			
 			Button:
 				font_name: titleFont
 				border: border
 				background_normal: borderImage
-				background_down: borderImage
+				background_down: borderImageDown
 				text: ">"
 				size_hint: 1, 0.25
 				on_press: root.btn_login_pressed(username.text,password.text)
@@ -84,13 +87,13 @@
 				text: "Chat!"
 				border: border
 				background_normal: borderImage
-				background_down: borderImage
+				background_down: borderImageDown
 				on_press: root.chat()
 			Button:
 				text: "update"
 				border: border
 				background_normal: borderImage
-				background_down: borderImage
+				background_down: borderImageDown
 				on_press: root.update()
 		
 		ListView:
@@ -111,12 +114,14 @@
 			id: chatBox
 			font_name: textFont
 			text: ""
+			readonly: True
 			#valign: "top"
 			size_hint: 1, 1
 			foreground_color: 0,255,0,1
 			border: border
 			background_normal: borderImage
 			background_active: borderImage
+			cursor_color: 0,1,0,1
 			
 		BoxLayout:
 			orientation: "horizontal"
@@ -133,6 +138,7 @@
 				background_active: borderImage
 				multiline: False
 				on_text_validate: root.sendMessage(sendBox.text)
+				cursor_color: 0,1,0,1
 				
 			Button:
 				font_name: titleFont
@@ -140,5 +146,5 @@
 				size_hint_x: 0.15
 				border: border
 				background_normal: borderImage
-				background_down: borderImage
+				background_down: borderImageDown
 				on_press: root.sendMessage(sendBox.text)

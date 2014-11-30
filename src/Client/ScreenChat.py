@@ -9,5 +9,6 @@ class ScreenChat(Screen):
             App.get_running_app().ccommunication.sendmsg(App.get_running_app().dict.currentPartner, text)
             self.ids.chatBox.text += "\n"+App.get_running_app().username+": "+text
             self.ids.sendBox.text = ""
+            self.ids.sendBox.focus = True
 
     pass
