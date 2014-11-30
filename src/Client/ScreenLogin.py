@@ -25,8 +25,9 @@ class ScreenLogin(Screen):
         if (loginsuccess):
             self.ids.loginText.text="Logged in!"
             print "Successfully logged in as" +username
+            App.get_running_app().ccommunication.getUsers()
             App.get_running_app().username=username
-            App.get_running_app().sm.current = "friends" #use App.get_running_app() to access current app
+            App.get_running_app().sm.current = "connect" #use App.get_running_app() to access current app
         else:
             loginfailbutton = Button(text='Please:\nCheck your connection\nCheck your login details\nTry again')
             self.loginfail = Popup(title='Login failed',content=loginfailbutton,auto_dismiss=False,size_hint=(0.5, 0.5))

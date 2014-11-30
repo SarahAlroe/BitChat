@@ -3,6 +3,7 @@ from Receive import Receive
 from ScreenLogin import ScreenLogin
 from ScreenFriendsList import ScreenFriendsList
 from ScreenChat import ScreenChat
+from ScreenConnect import ScreenConnect
 from Dictionary import Dictionary
 from kivy.app import App
 from kivy.uix.button import Button
@@ -30,6 +31,7 @@ class BitChatApp(App):
         self.sm.add_widget(ScreenLogin(name='login'))
         self.sm.add_widget(ScreenChat(name='chat'))
         self.sm.add_widget(ScreenFriendsList(name='friends'))
+        self.sm.add_widget(ScreenConnect(name='connect'))
         return self.sm
     
     def on_start(self):

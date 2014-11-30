@@ -54,7 +54,13 @@ class ClientCommunication():
         port=self.ap.dict.getPort(username)
         addresslist=(ip,port)
         return addresslist
-        
+
+    def getUsers(self):
+        print "Getting user list."
+        data={'type':"getusers"}
+        jdata=json.dumps(data)
+        Send(self.sock, self.client.receiver.confirmed ,jdata, (self.serverAdr, self.serverPort)).start()
+
     def sendmsg(self, username, msg):
         print "Sending message \"" + msg + "\" to user " + username
         data = {'type':"msg", 'username':self.ap.username, 'msg':msg}

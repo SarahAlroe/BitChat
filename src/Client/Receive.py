@@ -118,6 +118,7 @@ class Receive (threading.Thread):
                     if (out["target"][0]==self.ap.ip):
                         out["target"][0]=out["target"][2]
                     #Run hole puncher:
+                    connected=False
                     if self.puncher(out['target'][0],out['target'][1],self.sock):
                         print "Connection sucessful!"
                         connected=True
@@ -142,6 +143,10 @@ class Receive (threading.Thread):
                     print "Current port is: ",
                     self.ap.port=out["port"]
                     print self.ap.port
-            except:          
+                elif out["type"] == "users":
+                    print "New users have been fetched"
+                    self.ap.sm.get_screen("friends").ids.list.adapter.data=out["users"]
+                    pass
+            except:
                 exc_type, exc_value, exc_traceback = sys.exc_info()
                 traceback.print_exception(exc_type, exc_value, exc_traceback)

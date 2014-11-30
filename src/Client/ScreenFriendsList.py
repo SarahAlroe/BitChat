@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
 class ScreenFriendsList(Screen):
     def on_pre_enter(self): 
-        self.ids.list.adapter.data = {'Joan', 'Hugo', 'Silas', 'SpaceTrold', 'Troels' ,'Bedstemor', 'Pelle'}
+        self.ids.list.adapter.data = {}
       
     def userConverter(self,index, name):
        return {"text": name}
@@ -10,10 +10,11 @@ class ScreenFriendsList(Screen):
     def chat(self):
         print "Initializing chat with" + str(self.ids.list.adapter.selection[0].text)
         App.get_running_app().ccommunication.connect(App.get_running_app().username, self.ids.list.adapter.selection[0].text)
-        App.get_running_app().chatBox="You are now chatting with "+self.ids.list.adapter.selection[0].text
+        self.ap.sm.get_screen("chat").ids.chatBox.text="You are now chatting with "+self.ids.list.adapter.selection[0].text
 
     def update(self):
-        pass
+        self.ids.list.adapter.data = {}
+        App.get_running_app().ccommunication.getUsers()
     '''     
     def userConverter(self, index, name):
         result = {

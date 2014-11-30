@@ -24,11 +24,13 @@
 			
 			Label:
 				size_hint_y: 1
-				text: 'BitChat v. 2.0'
+				text: 'BitChat'
 				#halign: 'middle'
 				valign: 'top'
 				foreground_color: 0,255,0,1
 				font_name: titleFont
+				font_size: "150sp"
+				color: 0,1,0,1
 			TextInput:
 				id: username
 				size_hint: 1, 0.2
@@ -67,15 +69,64 @@
 				on_press: root.btn_login_pressed(username.text,password.text)
 			Label:
 				id: loginText
-				size_hint_y: 1
+				size_hint_y: 0.75
 				foreground_color: 0,255,0,1
 				text: ""
 		Label:
 			size_hint_x: 0.5
-			
 
+<ScreenConnect>:
+	BoxLayout:
+		orientation: "horizontal"
+		Label:
+			size_hint_x: 0.5
 
-			
+		BoxLayout:
+			orientation: "vertical"
+			size_hint_x: 1
+			spacing: 10
+			#padding: 0,50,0,50
+
+			Label:
+				size_hint_y: 1
+				text: 'Connect'
+				#halign: 'middle'
+				valign: 'top'
+				foreground_color: 0,255,0,1
+				font_name: titleFont
+				font_size: "150sp"
+				color: 0,1,0,1
+			Label:
+				size_hint: 1, 0.2
+				text: "Input the username of the one you wish to talk to and click >"
+			TextInput:
+				id: user
+				size_hint: 1, 0.2
+				multiline: False
+				font_name: titleFont
+				hint_text: "Username"
+				background_color: 0,25,0,0.1
+				foreground_color: 0,255,0,1
+				border: border
+				background_normal: borderImage
+				background_active: borderImage
+				cursor_color: 0,1,0,1
+
+			Button:
+				font_name: titleFont
+				border: border
+				background_normal: borderImage
+				background_down: borderImageDown
+				text: ">"
+				size_hint: 1, 0.25
+				on_press: root.btn_connect_pressed(user.text)
+			Label:
+				size_hint_y: 0.75
+				foreground_color: 0,255,0,1
+				text: ""
+		Label:
+			size_hint_x: 0.5
+
 <ScreenFriendsList>:
 	BoxLayout:
 		id: bx_layout 
