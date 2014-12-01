@@ -34,7 +34,7 @@ class Receive (threading.Thread):
     
         remote_knows_our_token = False
      
-        for i in range(10):
+        for i in range(40):
             print "Connecting: "+str(i)
             r,w,x = select.select([sock], [sock], [], 0)
             if remote_token != "_" and remote_knows_our_token:
