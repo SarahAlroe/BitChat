@@ -21,7 +21,6 @@ kivy.require('1.8.0') # replace with your current kivy version !
 
 # Create the screen manager
 
-
 class BitChatApp(App):
     HOST, PORT = "78.156.118.38", 5006
     username=""
@@ -51,8 +50,9 @@ class BitChatApp(App):
         return self.ccommunication
     
     def holePunched(self,status, target):
-        self.sm.current = "chat"
-        print "hole has been punched"
+        if status:
+            self.sm.current = "chat"
+            print "hole has been punched"
 
         pass
     
