@@ -74,7 +74,7 @@ class ClientCommunication():
         self.serverPort = serverPort
         # set sock
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.sock.bind(("", 5007))
+        self.sock.bind(("", 0))
         self.sock.setblocking(0)
         self.sock.settimeout(20) 
         
